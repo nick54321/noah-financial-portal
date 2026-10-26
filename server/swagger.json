@@ -1,0 +1,91 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Noah Financial Services Portal API",
+    "version": "1.0.0",
+    "description": "Unified Customer Financial Portal powered by Noah Business API infrastructure"
+  },
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "summary": "User Registration",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" },
+                  "full_name": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "Success" } }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "summary": "User Login",
+        "responses": { "200": { "description": "Success" } }
+      }
+    },
+    "/api/auth/wallet-login": {
+      "post": {
+        "summary": "MetaMask / Wallet Nonce Authentication",
+        "responses": { "200": { "description": "Success" } }
+      }
+    },
+    "/api/subscriptions/plans": {
+      "get": {
+        "summary": "Get Available IBAN Subscription Plans ($75 USD, $75 EUR, $150 Combo)",
+        "responses": { "200": { "description": "Plans list" } }
+      }
+    },
+    "/api/subscriptions/checkout": {
+      "post": {
+        "summary": "Purchase or Upgrade IBAN Subscription",
+        "responses": { "200": { "description": "Activated subscription" } }
+      }
+    },
+    "/api/onboarding/start": {
+      "post": {
+        "summary": "Initiate Noah Hosted Onboarding and KYC",
+        "responses": { "200": { "description": "Onboarding session URL" } }
+      }
+    },
+    "/api/accounts/provision": {
+      "post": {
+        "summary": "Provision EUR / USD IBAN Virtual Bank Account",
+        "responses": { "200": { "description": "Provisioned IBAN account details" } }
+      }
+    },
+    "/api/payouts/initiate": {
+      "post": {
+        "summary": "Initiate Global Fiat Payout via Noah Channels",
+        "responses": { "200": { "description": "Payout transaction record" } }
+      }
+    },
+    "/api/conversions/onramp/session": {
+      "post": {
+        "summary": "Create On-Ramp Fiat-to-Crypto Session",
+        "responses": { "200": { "description": "Checkout URL" } }
+      }
+    },
+    "/api/conversions/offramp/session": {
+      "post": {
+        "summary": "Create Off-Ramp Crypto-to-Fiat Session",
+        "responses": { "200": { "description": "Checkout URL and Deposit Address" } }
+      }
+    },
+    "/api/webhooks/noah": {
+      "post": {
+        "summary": "Noah Inbound Webhook Endpoint (ECDSA SHA-384 Signature Verified)",
+        "responses": { "200": { "description": "Webhook Acknowledged" } }
+      }
+    }
+  }
+}
